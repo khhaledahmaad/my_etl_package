@@ -2,7 +2,7 @@ from typing import List
 from pathlib import Path
 
 
-def list_csv_files(directory_path: str) -> List[Path]:
+def list_csv_files(directory_path: Path) -> List[Path]:
     """
     List all CSV files in a given directory.
 

@@ -1,3 +1,3 @@
-import etl_pipeline.utils.fetch_files
+import my_etl_package.utils.fetch_files
 
-print(etl_pipeline.utils.fetch_files.list_csv_files('./data/test'))
+print(my_etl_package.utils.fetch_files.list_csv_files('./data/test'))

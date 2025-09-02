@@ -1,10 +1,10 @@
 import pytest
 import pandas as pd
 from sqlalchemy import text
-from etl_pipeline.utils import PostgresConnector
-from etl_pipeline.read_data import read_csv
-from etl_pipeline.write_data import write_csv
-from etl_pipeline import load_to_db
+from my_etl_package.utils import PostgresConnector
+from my_etl_package.read_data import read_csv
+from my_etl_package.write_data import write_csv
+from my_etl_package import load_to_db
 
 
 @pytest.fixture

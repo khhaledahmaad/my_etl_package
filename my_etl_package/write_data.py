@@ -1,7 +1,8 @@
+from pathlib import Path
 import pandas as pd
 
 
-def write_csv(df: pd.DataFrame, output_path: str):
+def write_csv(df: pd.DataFrame, output_path: Path) -> None:
     """
     Write a pandas DataFrame to a CSV file.
 

@@ -1,6 +1,6 @@
 import os
 import pytest
-from etl_pipeline.utils import PostgresConnector
+from my_etl_package.utils import PostgresConnector
 from unittest.mock import patch
 from sqlalchemy.engine import Engine
 

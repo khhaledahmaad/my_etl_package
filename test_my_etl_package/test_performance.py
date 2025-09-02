@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
-from etl_pipeline import read_csv, transform_data, write_csv, load_to_db
-from etl_pipeline.utils import PostgresConnector, list_csv_files
+from my_etl_package import read_csv, transform_data, write_csv, load_to_db
+from my_etl_package.utils import PostgresConnector, list_csv_files
 
 
 # def test_performance(benchmark, tmp_path):

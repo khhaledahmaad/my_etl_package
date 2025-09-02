@@ -1,8 +1,8 @@
 import logging
 from pathlib import Path
 from dotenv import load_dotenv
-from etl_pipeline.utils import list_csv_files, PostgresConnector
-from etl_pipeline import read_csv, transform_data, write_csv, load_to_db
+from my_etl_package.utils import list_csv_files, PostgresConnector
+from my_etl_package import read_csv, transform_data, write_csv, load_to_db
 
 # Configure logging
 logging.basicConfig(

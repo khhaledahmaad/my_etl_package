@@ -1,5 +1,5 @@
 import pytest
-from etl_pipeline.utils import list_csv_files
+from my_etl_package.utils import list_csv_files
 
 
 @pytest.fixture
