@@ -1,4 +1,3 @@
-```markdown
 # ETL Pipeline Project
 
 This project implements a simple **Extract–Transform–Load (ETL)** pipeline using Python.  
@@ -251,5 +250,3 @@ python etl_pipeline.py
 * Place your input CSV files in the same input directory before running the pipeline.
 
 ---
-
-```
