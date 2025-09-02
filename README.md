@@ -160,6 +160,8 @@ load_to_db(combined_df, "processed_table", engine)
 
 Here’s an end-to-end pipeline script:
 
+In `etl_pipeline.py` (name as you wish) in the current working directory ->
+
 ```python
 import logging
 from pathlib import Path
