@@ -1,6 +1,6 @@
-# ETL Pipeline Project
+# My ETL Package
 
-This project implements a simple **Extract–Transform–Load (ETL)** pipeline using Python.  
+This package implements a simple **Extract–Transform–Load (ETL)** pipeline using Python.  
 It processes CSV files from an input directory, transforms and integrate them into a single dataset, saves the results to an output directory, and loads the final dataset into a PostgreSQL database.
 
 ---
