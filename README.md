@@ -169,6 +169,7 @@ from dotenv import load_dotenv
 from my_etl_package.utils import list_csv_files, PostgresConnector
 from my_etl_package import read_csv, transform_data, write_csv, load_to_db
 
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
