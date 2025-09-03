@@ -120,8 +120,10 @@ print(files)
 from my_etl_package import read_csv
 
 df1 = read_csv(files[0])
-display(df1)
+df1
 ```
+
+
 
 
 <div>
@@ -178,12 +180,15 @@ display(df1)
 
 
 
+
 ```python
 from my_etl_package import read_csv
 
 df2 = read_csv(files[1])
-display(df2)
+df2
 ```
+
+
 
 
 <div>
@@ -242,6 +247,7 @@ display(df2)
 </div>
 
 
+
 #### 1.3. Transform multiple CSVs
 
 
@@ -249,8 +255,10 @@ display(df2)
 from my_etl_package import transform_data
 
 combined_df = transform_data([df1, df2])
-display(combined_df)
+combined_df
 ```
+
+
 
 
 <div>
@@ -314,6 +322,7 @@ display(combined_df)
   </tbody>
 </table>
 </div>
+
 
 
 #### 1.4. Write processed DataFrame to CSV
