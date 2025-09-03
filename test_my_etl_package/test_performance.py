@@ -48,8 +48,7 @@ def test_full_etl_pipeline_with_list_csv_benchmark(benchmark, tmp_path):
         dfs = (read_csv(f) for f in file_paths)
         transformed_df = transform_data(dfs)
         write_csv(transformed_df, output_file)
-        engine = PostgresConnector().get_db_connection()
-        load_to_db(transformed_df, "test_etl_table", engine)
+        load_to_db(transformed_df, "test_etl_table")
 
     # Run the benchmark
     benchmark(run_etl)

@@ -1,10 +1,9 @@
 import sys
 import pandas as pd
 from my_etl_package.utils import PostgresConnector
-from sqlalchemy.engine import Engine
 
 
-def load_to_db(df: pd.DataFrame, table_name: str, engine: Engine) -> None:
+def load_to_db(df: pd.DataFrame, table_name: str) -> None:
     """
     Load a pandas DataFrame into a PostgreSQL database table.
 

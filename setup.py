@@ -11,7 +11,7 @@ with io.open(
 
 setup(
     name="my_etl_package",
-    version="0.0.8",
+    version="0.0.9",
     description="A package for ETL pipeline operations",
     long_description=long_description,
     long_description_content_type="text/markdown",

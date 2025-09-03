@@ -1,0 +1,18 @@
+.PHONY: build test upload upload-test clean
+
+build:
+    python setup.py sdist bdist_wheel
+
+check:
+    twine check dist/*
+
+upload:
+    twine upload dist/*
+
+upload-test:
+    twine upload --repository-url https://test.pypi.org/legacy/ -u __token__ -p "pypi-AgENdGVzdC5weXBpLm9yZwIkM2JkMjUwNzgtODM5OS00NTkxLThlNDktMzg2MTU2Yzk4MzkxAAIWWzEsWyJteS1ldGwtcGFja2FnZSJdXQACLFsyLFsiYmQzMjE4NzUtNmNiNC00ZWIwLWFhNjgtNjBjZDMxMjM0ZmU0Il1dAAAGIErBSoHF4j2gSgmWbWJrofWBhf2PrPSDx9XDaJRtLFn9" --verbose dist/*
+
+clean:
+    rm -rf dist/ build/ *.egg-info
+
+all: clean build check

@@ -31,7 +31,6 @@ def main():
 
     # Configuration
     table_name = "etl_pipeline_processed"
-    engine = PostgresConnector().get_db_connection()
     logging.info(f"Using table: {table_name}")
 
     # Extract
@@ -54,7 +53,7 @@ def main():
 
     # Load - load into Postgres
     logging.info("Loading data into PostgreSQL...")
-    load_to_db(combined_df, table_name, engine)
+    load_to_db(combined_df, table_name)
     logging.info("Data successfully loaded into PostgreSQL.")
 
     logging.info("ETL pipeline finished.")

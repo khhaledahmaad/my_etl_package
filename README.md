@@ -4,6 +4,8 @@ This package implements a simple **Extract–Transform–Load (ETL)** pipeline u
 It processes CSV files from an input directory, transforms and integrate them into a single dataset, saves the results to an output directory, and loads the final dataset into a PostgreSQL database.
 
 ---
+
+
 ## 🔑 Pre-requisites
 
 1. **Working Python environment**  
@@ -96,50 +98,242 @@ pwd/
 
 ### 1. Use Methods Individually
 
-#### List all CSV files in a directory
+#### 1.1. List all CSV files in a directory
+
 
 ```python
 from pathlib import Path
 from my_etl_package.utils import list_csv_files
 
-input_directory = Path().absolute() / "data/raw"  # or any other directory you stored your input files as a pathlib.Path object
+input_directory = Path().absolute() / "data/raw"
 files = list_csv_files(input_directory)
 print(files)
 ```
 
-#### Read a CSV file
+    [WindowsPath('C:/Users/khhal/Documents/data/raw/103_semester_2_week_1_raw.csv'), WindowsPath('C:/Users/khhal/Documents/data/raw/104_semester_2_week_2_raw.csv')]
+    
+
+#### 1.2. Read a CSV file
+
 
 ```python
 from my_etl_package import read_csv
 
-df = read_csv(Path().absolute() / "data/test/sample.csv")
-print(df.head())
+df1 = read_csv(files[0])
+display(df1)
 ```
 
-#### Transform multiple CSVs
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>from</th>
+      <th>message</th>
+      <th>status</th>
+      <th>date_sent</th>
+      <th>student_id</th>
+      <th>course_code</th>
+      <th>student_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>447440049121</td>
+      <td>3821656</td>
+      <td>received</td>
+      <td>2023-01-25 13:22:10+00:00</td>
+      <td>3821656</td>
+      <td>NaN</td>
+      <td>Khaled Ahmed</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>447440049121</td>
+      <td>3821656 103</td>
+      <td>received</td>
+      <td>2023-01-25 12:26:28+00:00</td>
+      <td>3821656</td>
+      <td>103.0</td>
+      <td>Khaled Ahmed</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 ```python
-from my_etl_package import transform_data, read_csv
+from my_etl_package import read_csv
 
-csv_files = [Path().absolute() / "data/raw/file1.csv", Path().absolute() / "data/raw/file2.csv"]
-dfs = (read_csv(f) for f in csv_files)
-combined_df = transform_data(dfs)
-print(combined_df.head())
+df2 = read_csv(files[1])
+display(df2)
 ```
 
-#### Write processed DataFrame to CSV
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>from</th>
+      <th>message</th>
+      <th>status</th>
+      <th>date_sent</th>
+      <th>student_id</th>
+      <th>course_code</th>
+      <th>student_name</th>
+      <th>session</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4.474400e+11</td>
+      <td>3821656 104</td>
+      <td>received</td>
+      <td>2023-02-02 13:24:02+00:00</td>
+      <td>3821656.0</td>
+      <td>104.0</td>
+      <td>Khaled Ahmed</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+#### 1.3. Transform multiple CSVs
+
+
+```python
+from my_etl_package import transform_data
+
+combined_df = transform_data([df1, df2])
+display(combined_df)
+```
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>from</th>
+      <th>message</th>
+      <th>status</th>
+      <th>date_sent</th>
+      <th>student_id</th>
+      <th>course_code</th>
+      <th>student_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4.474400e+11</td>
+      <td>3821656</td>
+      <td>received</td>
+      <td>2023-01-25 13:22:10+00:00</td>
+      <td>3821656.0</td>
+      <td>NaN</td>
+      <td>Khaled Ahmed</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.474400e+11</td>
+      <td>3821656 103</td>
+      <td>received</td>
+      <td>2023-01-25 12:26:28+00:00</td>
+      <td>3821656.0</td>
+      <td>103.0</td>
+      <td>Khaled Ahmed</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.474400e+11</td>
+      <td>3821656 104</td>
+      <td>received</td>
+      <td>2023-02-02 13:24:02+00:00</td>
+      <td>3821656.0</td>
+      <td>104.0</td>
+      <td>Khaled Ahmed</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+#### 1.4. Write processed DataFrame to CSV
+
 
 ```python
 from pathlib import Path
 from my_etl_package import write_csv
 
-output_path = Path().absolute() / "data/processed/processed.csv")
-write_csv(combined_df, output_path)
+output_path = Path().absolute() / "data/processed"
+output_path.mkdir(exist_ok=True)
+output_file = output_path / "processed.csv"
+write_csv(combined_df, output_file)
 ```
 
-#### Load DataFrame into PostgreSQL
+#### 1.5. Load DataFrame into PostgreSQL
+
 
 ```python
+from dotenv import load_dotenv
 from my_etl_package.utils import PostgresConnector
 from my_etl_package import load_to_db
 
@@ -150,11 +344,13 @@ load_dotenv()
 # If .env is in a different location, specify the path:
 # load_dotenv('./some_other_location/.env')
 
-engine = PostgresConnector().get_db_connection()
-load_to_db(combined_df, "processed_table", engine)
+table_name = "etl_pipeline_processed"
+load_to_db(combined_df, table_name)
 ```
 
----
+    INFO:my_etl_package.utils.connect_db:PostgresConnector initialized with loaded credentials.
+    INFO:my_etl_package.utils.connect_db:Database engine generated for: postgresql://postgres:Khal8891@localhost:5434/postgres.
+    
 
 ### 2. Run the Full ETL Pipeline
 
@@ -162,13 +358,13 @@ Here’s an end-to-end pipeline script:
 
 In `etl_pipeline.py` (name as you wish) in the current working directory ->
 
+
 ```python
 import logging
 from pathlib import Path
 from dotenv import load_dotenv
 from my_etl_package.utils import list_csv_files, PostgresConnector
 from my_etl_package import read_csv, transform_data, write_csv, load_to_db
-
 
 # Configure logging
 logging.basicConfig(
@@ -196,7 +392,6 @@ def main():
 
     # Configuration
     table_name = "etl_pipeline_processed"
-    engine = PostgresConnector().get_db_connection()
     logging.info(f"Using table: {table_name}")
 
     # Extract
@@ -219,16 +414,30 @@ def main():
 
     # Load - load into Postgres
     logging.info("Loading data into PostgreSQL...")
-    load_to_db(combined_df, table_name, engine)
+    load_to_db(combined_df, table_name)
     logging.info("Data successfully loaded into PostgreSQL.")
 
     logging.info("ETL pipeline finished.")
 
-
-if __name__ == "__main__":
-    main()
-
+main()
 ```
+
+    INFO:root:Environment variables loaded.
+    INFO:root:Output directory set to: C:\Users\khhal\Documents\data\processed
+    INFO:root:Starting ETL pipeline...
+    INFO:root:Using table: etl_pipeline_processed
+    INFO:root:Looking for CSV files in: C:\Users\khhal\Documents\data\raw
+    INFO:root:Found 2 CSV files.
+    INFO:root:Transforming data...
+    INFO:root:Data transformation complete.
+    INFO:root:Writing processed data to CSV...
+    INFO:root:Data written to CSV.
+    INFO:root:Loading data into PostgreSQL...
+    INFO:my_etl_package.utils.connect_db:PostgresConnector initialized with loaded credentials.
+    INFO:my_etl_package.utils.connect_db:Database engine generated for: postgresql://postgres:Khal8891@localhost:5434/postgres.
+    INFO:root:Data successfully loaded into PostgreSQL.
+    INFO:root:ETL pipeline finished.
+    
 
 Run it:
 

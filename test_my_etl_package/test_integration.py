@@ -44,7 +44,7 @@ def test_etl_pipeline_integration(tmp_path, test_data, db_connection):
     write_csv(read_df, output_file)
 
     # Load DataFrame into database table using load_to_db
-    load_to_db(read_df, table_name, db_connection)
+    load_to_db(read_df, table_name)
 
     # Read back the CSV written by write_csv
     written_df = read_csv(output_file)
